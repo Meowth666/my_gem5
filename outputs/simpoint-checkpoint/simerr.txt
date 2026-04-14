@@ -1,0 +1,16 @@
+warn: Base 10 memory/cache size 3GB will be cast to base 2 size 3GiB.
+warn: This SimPoint class has been deprecated in favor of `SimpointResource` and `SimpointDirectory` resource which may be found in `gem5.resources.resource`. Please utilize these. This SimPoint class will be removed in future releases of gem5.
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (4096 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+src/sim/process.cc:422: warn: Checkpoints for pipes, device drivers and sockets do not work.
+src/sim/process.cc:422: warn: Checkpoints for pipes, device drivers and sockets do not work.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/process.cc:422: warn: Checkpoints for pipes, device drivers and sockets do not work.

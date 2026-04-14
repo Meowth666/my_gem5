@@ -1,0 +1,12 @@
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.1.0.0
+gem5 compiled Apr 10 2026 12:46:45
+gem5 started Apr 13 2026 12:53:30
+gem5 executing on ef519092b471, pid 55
+command line: ./build/ALL/gem5.opt -re --outdir=outputs/full-detail-run configs/tutorial/chapter2/9/full-detail-run.py
+
+Global frequency set at 1000000000000 ticks per second
+Sum: 332833500000
+Simulation Done
