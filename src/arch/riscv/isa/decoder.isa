@@ -1430,6 +1430,21 @@ decode QUADRANT default Unknown::unknown() {
                     }
                 }
             }
+            format ROp {
+                0x3: decode FUNCT7 {
+                    0x00: config_ex({{
+                        uint64_t rs1_val = Rs1;
+                        uint64_t rs2_val = Rs2;
+                        auto tc = xc->tcBase();
+                        auto cpu = tc->getCpuPtr();
+                        auto base_cpu = static_cast<BaseCPU*>(cpu);
+                        base_cpu->getGemminiSimObjectUnit()->config_ex(rs1_val, rs2_val);
+                        std::cout << "[ISA] config_ex executed: rs1="
+                                << rs1_val << " rs2=" << rs2_val << std::endl;
+                        Rd = 0;
+                    }});
+                }
+            }
         }
 
         0x04: decode FUNCT3 {
@@ -6485,6 +6500,28 @@ decode QUADRANT default Unknown::unknown() {
                     'ARCH_BITS & XlateFlags::FORCE_VIRT'
                 ]);
 
+            }
+        }
+
+        0x1d: decode FUNCT3{
+            format ROp {
+                0x0: decode FUNCT7{
+                    0x20: add16({{
+                            uint16_t Rd_16 = (uint16_t)(Rs1_ud) +
+                                    (uint16_t)(Rs2_ud);
+                            uint16_t Rd_32 = (uint16_t)((Rs1_ud >> 16) +
+                                                        (Rs2_ud >> 16));
+                            uint16_t Rd_48 = (uint16_t)((Rs1_ud >> 32) +
+                                                        (Rs2_ud >> 32));
+                            uint16_t Rd_64 = (uint16_t)((Rs1_ud >> 48) +
+                                                        (Rs2_ud >> 48));
+                            uint64_t result = Rd_64;
+                            result = result << 16 | Rd_48;
+                            result = result << 16 | Rd_32;
+                            result = result << 16 | Rd_16;
+                            Rd = result;
+                    }});
+                }
             }
         }
 

@@ -1,0 +1,16 @@
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.1.0.0
+gem5 compiled Apr 17 2026 08:23:59
+gem5 started Apr 17 2026 08:25:59
+gem5 executing on ef519092b471, pid 66025
+command line: ./build/X86/gem5.fast -re --outdir=simple-sim-m5out configs/bootcamp/local-inst-tracer/global_inst_tracker.py
+
+Global frequency set at 1000000000000 ticks per second
+Reached workbegin
+Dump and reset stats
+Start listening for instructions
+Reached MAX_INSTS
+Exiting simulation
+Simulation Done

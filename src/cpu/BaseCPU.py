@@ -115,6 +115,8 @@ class BaseCPU(ClockedObject):
     function_trace = Param.Bool(False, "Enable function trace")
     function_trace_start = Param.Tick(0, "Tick to start function trace")
 
+    GemMini = Param.GemminiSimObject(NULL, "Gemmini")
+
     checker = Param.BaseCPU(NULL, "checker CPU")
 
     syscallRetryLatency = Param.Cycles(10000, "Cycles to wait until retry")
@@ -151,7 +153,6 @@ class BaseCPU(ClockedObject):
         "Leave the CPU switched out after startup (used when switching "
         "between CPU models)",
     )
-
     model_reset = ResetResponsePort("Generic reset for the CPU")
 
     cpu_idle_pins = VectorIntSourcePin(

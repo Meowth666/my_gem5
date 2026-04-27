@@ -1,0 +1,25 @@
+warn: Base 10 memory/cache size 3GB will be cast to base 2 size 3GiB.
+warn: Resource npb-ep-a is not compatible with gem5 version 25.1.0.0.
+warn: Resource x86-linux-kernel-4.19.83 is not compatible with gem5 version 25.1.0.0.
+warn: Resource x86-npb is not compatible with gem5 version 25.1.0.0.
+warn: Resource x86-linux-kernel-4.19.83 is not compatible with gem5 version 25.1.0.0.
+warn: Resource x86-npb is not compatible with gem5 version 25.1.0.0.
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: board.workload.acpi_description_table_pointer.rsdt adopting orphan SimObject param 'entries'
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (2048 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (2048 Mbytes)
+src/sim/kernel_workload.cc:46: info: kernel located at: /root/.cache/gem5/x86-linux-kernel-4.19.83-1.0.0
+board.pc.com_1.device: Listening for connections on port 3456
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/dev/intel_8254_timer.cc:128: warn: Reading current count from inactive timer.
+board.remote_gdb: Listening for connections on port 7000
+src/dev/x86/pc.cc:117: warn: Don't know what interrupt to clear for console.
+src/arch/x86/interrupts.cc:530: hack: Assuming logical destinations are 1 << id.
+build/ALL/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'verw_Mw_or_Rv' unimplemented
+build/ALL/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'verw_Mw_or_Rv' unimplemented
+build/ALL/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'verw_Mw_or_Rv' unimplemented
+build/ALL/arch/x86/generated/exec-ns.cc.inc:27: warn: instruction 'verw_Mw_or_Rv' unimplemented

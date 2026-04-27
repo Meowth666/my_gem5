@@ -45,6 +45,7 @@
 #include "cpu/simple/base.hh"
 #include "cpu/simple/exec_context.hh"
 #include "cpu/translation.hh"
+
 #include "params/BaseTimingSimpleCPU.hh"
 
 namespace gem5
@@ -56,7 +57,6 @@ class TimingSimpleCPU : public BaseSimpleCPU
 
     TimingSimpleCPU(const BaseTimingSimpleCPUParams &params);
     virtual ~TimingSimpleCPU();
-
     void init() override;
 
   private:
@@ -71,14 +71,14 @@ class TimingSimpleCPU : public BaseSimpleCPU
      * been processed, the "outstanding" counter is decremented. Once the
      * count is zero, the entire larger access is complete.
      */
+    //单次访问跨缓存行：分为两次子访问
     class SplitMainSenderState : public Packet::SenderState
     {
       public:
-        int outstanding;
+        int outstanding; //剩余等待数
         PacketPtr fragments[2];
-
         int
-        getPendingFragment()
+        getPendingFragment() //查询两个切片是否还在等待
         {
             if (fragments[0]) {
                 return 0;
@@ -90,15 +90,17 @@ class TimingSimpleCPU : public BaseSimpleCPU
         }
     };
 
+    // 管理【单个分片小包】的状态
     class SplitFragmentSenderState : public Packet::SenderState
     {
       public:
-        SplitFragmentSenderState(PacketPtr _bigPkt, int _index) :
+        // 构造：绑定总请求包 + 自己是第几个分片
+        SplitFragmentSenderState(PacketPtr _bigPkt, int _index):
             bigPkt(_bigPkt), index(_index)
         {}
-        PacketPtr bigPkt;
-        int index;
-
+        PacketPtr bigPkt;  // 指向【原始的总请求包】
+        int index;         // 自己是第0个还是第1个分片
+        // 分片完成后：告诉总管家，把自己标记为已完成
         void
         clearFromParent()
         {
@@ -108,7 +110,7 @@ class TimingSimpleCPU : public BaseSimpleCPU
         }
     };
 
-    class FetchTranslation : public BaseMMU::Translation
+    class FetchTranslation : public BaseMMU::Translation  //地址翻译：虚拟-物理
     {
       protected:
         TimingSimpleCPU *cpu;
@@ -132,26 +134,25 @@ class TimingSimpleCPU : public BaseSimpleCPU
             cpu->sendFetch(fault, req, tc);
         }
     };
+    // 取指地址翻译实例，绑定当前CPU，处理取指的虚拟地址翻译
     FetchTranslation fetchTranslation;
-
+    // 处理线程的缓存窥探请求（多核缓存一致性，唤醒等待线程）
     void threadSnoop(PacketPtr pkt, ThreadID sender);
-    void sendData(const RequestPtr &req,
-                  uint8_t *data, uint64_t *res, bool read);
-    void sendSplitData(const RequestPtr &req1, const RequestPtr &req2,
-                       const RequestPtr &req,
-                       uint8_t *data, bool read);
-
+    // 发送【普通/不分片】的内存读写请求
+    void sendData(const RequestPtr &req, uint8_t *data, uint64_t *res, bool read);
+    // 发送【分片/跨缓存行】的内存读写请求
+    void sendSplitData(const RequestPtr &req1, const RequestPtr &req2, const RequestPtr &req, uint8_t *data, bool read);
+    // 处理地址翻译故障（TLB缺失、权限错误、缺页异常）
     void translationFault(const Fault &fault);
-
+    // 构建单个标准访存数据包
     PacketPtr buildPacket(const RequestPtr &req, bool read);
-    void buildSplitPacket(PacketPtr &pkt1, PacketPtr &pkt2,
-            const RequestPtr &req1, const RequestPtr &req2,
-            const RequestPtr &req,
-            uint8_t *data, bool read);
-
+    // 构建两个分片访存数据包（对应跨缓存行的请求）
+    void buildSplitPacket(PacketPtr &pkt1, PacketPtr &pkt2, const RequestPtr &req1, const RequestPtr &req2, const RequestPtr &req, uint8_t *data, bool read);
+    // 处理读内存的响应包（解析数据、更新寄存器）
     bool handleReadPacket(PacketPtr pkt);
-    // This function always implicitly uses dcache_pkt.
+    // 处理写内存的响应包（固定使用dcache_pkt）
     bool handleWritePacket();
+
 
     /**
      * A TimingCPUPort overrides the default behaviour of the
@@ -373,6 +374,7 @@ class TimingSimpleCPU : public BaseSimpleCPU
      * @returns true if the CPU is drained, false otherwise.
      */
     bool tryCompleteDrain();
+    
 };
 
 } // namespace gem5

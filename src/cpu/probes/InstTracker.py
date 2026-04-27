@@ -67,6 +67,5 @@ class LocalInstTracker(ProbeListenerObject):
         PyBindMethod("stopListening"),
         PyBindMethod("startListening"),
     ]
-
     global_inst_tracker = Param.GlobalInstTracker("Global instruction tracker")
     start_listening = Param.Bool(True, "Start listening for instructions")

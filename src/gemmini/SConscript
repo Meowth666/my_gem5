@@ -1,0 +1,9 @@
+Import("*")
+
+SimObject("GemminiSimObject.py", sim_objects=["GemminiSimObject"])
+
+Source("gemmini_sim_object.cc")
+
+DebugFlag("GemminiExampleFlag")
+
+# CompoundFlag("GreetFlag", ["GemminiExampleFlag"])

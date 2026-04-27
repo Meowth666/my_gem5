@@ -56,4 +56,12 @@ config RUBY_PROTOCOL_Garnet_standalone
     bool "Garnet standalone"
     default n
 
+config RUBY_PROTOCOL_MYMSI
+    bool "MyMSI"
+    select RUBY_IF_VALID
+    default n
+
+config PROTOCOL
+    default "MyMSI" if RUBY_PROTOCOL_MYMSI
+
 rsource "chi/Kconfig"

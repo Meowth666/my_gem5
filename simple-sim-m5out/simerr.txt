@@ -1,0 +1,53 @@
+warn: Base 10 memory/cache size 1GB will be cast to base 2 size 1GiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: Base 10 memory/cache size 64kB will be cast to base 2 size 64KiB.
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1127: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/gem5/configs/bootcamp/local-inst-tracer/simple_workload'
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:97: warn: ignoring syscall rt_sigaction(...)
+      (further warnings will be suppressed)
+src/sim/syscall_emul.cc:97: warn: ignoring syscall rt_sigprocmask(...)
+      (further warnings will be suppressed)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/power_state.cc:105: warn: PowerState: Already in the requested power state, request ignored
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall rseq(...)
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)

@@ -50,6 +50,7 @@
 #include "base/statistics.hh"
 #include "debug/Mwait.hh"
 #include "dev/intpin.hh"
+#include "gemmini/gemmini_sim_object.hh"
 #include "mem/htm.hh"
 #include "mem/port_proxy.hh"
 #include "sim/clocked_object.hh"
@@ -889,7 +890,10 @@ class BaseCPU : public ClockedObject
         void updateComCtrlStats(const StaticInstPtr staticInst);
 
     };
-
+    protected:
+        GemminiSimObject* gemmini_sim_object;
+    public:
+        GemminiSimObject* getGemminiSimObjectUnit() { return gemmini_sim_object; }
     std::vector<std::unique_ptr<FetchCPUStats>> fetchStats;
     std::vector<std::unique_ptr<ExecuteCPUStats>> executeStats;
     std::vector<std::unique_ptr<CommitCPUStats>> commitStats;

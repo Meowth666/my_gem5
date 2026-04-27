@@ -26,74 +26,74 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "cpu/probes/inst_tracker.hh"
+ #include "cpu/probes/inst_tracker.hh"
 
-namespace gem5
-{
-
-LocalInstTracker::LocalInstTracker(const LocalInstTrackerParams &params)
-    : ProbeListenerObject(params),
-      ifListening(params.start_listening),
-      globalInstTracker(params.global_inst_tracker)
-{
-    DPRINTF(InstTracker, "ifListening = %s\n", ifListening ? "true" : "false");
-}
-
-void
-LocalInstTracker::regProbeListeners()
-{
-    if (ifListening) {
-        if (listeners.empty()) {
-            connectListener<LocalInstTrackerListener>(
-                this, "RetiredInsts", &LocalInstTracker::retiredInstsHandler);
-            DPRINTF(InstTracker, "Start listening to RetiredInsts\n");
-        }
-    }
-}
-
-void
-LocalInstTracker::retiredInstsHandler(const uint64_t& inst)
-{
-    globalInstTracker->updateAndCheckInstCount(inst);
-}
-
-void
-LocalInstTracker::stopListening()
-{
-    ifListening = false;
-    listeners.clear();
-    DPRINTF(InstTracker, "Stop listening to RetiredInsts\n");
-}
-
-
-GlobalInstTracker::GlobalInstTracker(const GlobalInstTrackerParams &params)
-    : SimObject(params),
-      instCount(0)
-{
-    for (const auto &threshold : params.inst_thresholds) {
-        instThresholdSet.insert(threshold);
-        DPRINTF(InstTracker, "adding the instruction threshold\n"
-                              "instThreshold = %lu\n", threshold);
-    }
-    DPRINTF(InstTracker, "instThresholdSet size = %lu\n",
-            instThresholdSet.size());
-}
-
-void
-GlobalInstTracker::updateAndCheckInstCount(const uint64_t& inst)
-{
-    instCount ++;
-    if (instThresholdSet.find(instCount) != instThresholdSet.end()) {
-        DPRINTF(InstTracker, "Instruction count reached the threshold\n"
-                                "instCount = %lu\n",
-                                instCount);
-        instThresholdSet.erase(instCount);
-        // note that when the threshold is reached, the simulation will raise
-        // and exit event but it will not reset the instruction counter.
-        // user can reset the counter by calling the resetCounter() function
-        // in the simulation script.
-        exitSimLoopNow("a thread reached the max instruction count");
-    }
-}
-
-} // namespace gem5
+ namespace gem5
+ {
+ 
+ LocalInstTracker::LocalInstTracker(const LocalInstTrackerParams &params)
+     : ProbeListenerObject(params),
+       ifListening(params.start_listening),
+       globalInstTracker(params.global_inst_tracker)
+ {
+     DPRINTF(InstTracker, "ifListening = %s\n", ifListening ? "true" : "false");
+ }
+ 
+ void
+ LocalInstTracker::regProbeListeners()
+ {
+     if (ifListening) {
+         if (listeners.empty()) {
+             connectListener<LocalInstTrackerListener>(
+                 this, "RetiredInsts", &LocalInstTracker::retiredInstsHandler);
+             DPRINTF(InstTracker, "Start listening to RetiredInsts\n");
+         }
+     }
+ }
+ 
+ void
+ LocalInstTracker::retiredInstsHandler(const uint64_t& inst)
+ {
+     globalInstTracker->updateAndCheckInstCount(inst);
+ }
+ 
+ void
+ LocalInstTracker::stopListening()
+ {
+     ifListening = false;
+     listeners.clear();
+     DPRINTF(InstTracker, "Stop listening to RetiredInsts\n");
+ }
+ 
+ 
+ GlobalInstTracker::GlobalInstTracker(const GlobalInstTrackerParams &params)
+     : SimObject(params),
+       instCount(0)
+ {
+     for (const auto &threshold : params.inst_thresholds) {
+         instThresholdSet.insert(threshold);
+         DPRINTF(InstTracker, "adding the instruction threshold\n"
+                               "instThreshold = %lu\n", threshold);
+     }
+     DPRINTF(InstTracker, "instThresholdSet size = %lu\n",
+             instThresholdSet.size());
+ }
+ 
+ void
+ GlobalInstTracker::updateAndCheckInstCount(const uint64_t& inst)
+ {
+     instCount ++;
+     if (instThresholdSet.find(instCount) != instThresholdSet.end()) {
+         DPRINTF(InstTracker, "Instruction count reached the threshold\n"
+                                 "instCount = %lu\n",
+                                 instCount);
+         instThresholdSet.erase(instCount);
+         // note that when the threshold is reached, the simulation will raise
+         // and exit event but it will not reset the instruction counter.
+         // user can reset the counter by calling the resetCounter() function
+         // in the simulation script.
+         exitSimLoopNow("a thread reached the max instruction count");
+     }
+ }
+ 
+ } // namespace gem5

@@ -21,13 +21,13 @@ cache_hierarchy = MyPrivateL1SharedL2CacheHierarchy()
 memory = SingleChannelDDR3_1600()
 
 # Traffic Generator（线性访问）
-# generator = RandomGenerator(
-#     num_cores=1,
-#     rate="1GB/s"
-# )
-generator = HybridGenerator(
-    num_cores=6
+generator = RandomGenerator(
+    num_cores=1,
+    rate="1GB/s"
 )
+# generator = HybridGenerator(
+#     num_cores=6
+# )
 # -------------------------------
 # 2. 构建 Board（系统）
 # -------------------------------

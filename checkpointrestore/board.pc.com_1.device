@@ -1,0 +1,23 @@
+s://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+New release '20.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+
+ NAS Parallel Benchmarks (NPB3.3-OMP) - EP Benchmark
+
+ Number of randserial8250: too much work for irq4
+om numbers generated:       536870912
+ Number of available threads:                      2
+
+ -------------------- ROI BEGIN -------------------- 

@@ -42,3 +42,11 @@ SimObject(
 Source("inst_tracker.cc")
 
 DebugFlag("InstTracker")
+
+SimObject(
+    "MyInstTracker.py",
+    sim_objects=["MyLocalInstTracker", "MyGlobalInstTracker"],
+)
+Source("my_inst_tracker.cc")
+
+DebugFlag("MyInstTracker")
